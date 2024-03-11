@@ -1,0 +1,603 @@
+{% extends "grn_base.html" %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <span class="col-md-3" ></span>
+            <h1>Create Local PR</h1>
+            </div>
+
+            
+            <br>
+
+
+<form method="post" action="{% url 'create_pr' %}" id="form1">
+    {% csrf_token %}
+    <div class="form-group col-sm-8">
+        <label class="control-label col-sm-2" style="margin-top: 10px;">Site Name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="site_name">
+
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <span class="form-group">
+            <label class="control-label col-sm-4"> PR Number</label>
+            <div class="col-sm-8">
+
+                <input type="text" class="form-control" name="PR_no">
+            </div>
+        </span>
+        
+        <div class="form-group">
+            <label class="control-label col-sm-4">Vendor</label>
+            <div class="col-sm-8">
+                <input type="text" list="the_orders" class="form-control" name="vendor_name" >
+                <datalist id="the_orders">
+                  {% for order in the_orders %}
+                  <option value="{{order.vendor_name}}"></option>
+                  {% endfor %}
+                </datalist>
+              </div>
+            
+        </div>
+
+
+    </div>
+
+<div>
+    <div class="col-sm-5">
+        <div class="form-group">
+            <label class="control-label col-sm-4">PR Date</label>
+            <div class="col-sm-8">
+                <input type="date" name="date" class="form-control datetimepicker-input" data-target="#datepicker1" />
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8"></div>
+    <div class="col-sm-6">
+        <span class="form-group">
+            <label class="control-label col-sm-4">Before Vat</label>
+            <div class="col-sm-8" style="margin-top: 10px;">
+                <input type="text" class="form-control" name="PR_before_vat" readonly>
+
+            </div>
+        </span>
+        <span class="form-group">
+            <label class="control-label col-sm-4"> PR Total Price</label>
+            <div class="col-sm-8">
+
+                <input type="text" class="form-control" name="PR_total_price" readonly>
+            </div>
+        </span>
+    </div>
+
+    <div class="col-sm-5">
+       
+
+        <div class="form-group" style="margin-bottom: 10px;">
+            <label class="control-label col-sm-4" style="margin-top: 10px;">requested_by</label>
+            <div class="col-sm-8" style="margin-top: 10px;">
+                <input type="text" class="form-control" name="requested_by">
+
+            </div>
+        <div class="col-sm-4" style="margin-bottom: 40px; width: 100%;"><div class="col-sm-8" style="margin-top: 10px; width: 100%;">
+            
+
+        </div>
+    </div>
+    
+
+            <!-- <label class="control-label col-sm-4" style="margin-top: 10px;">Invoice Type</label>
+          <div class="col-sm-8" style="margin-top: 10px;">
+            <input type="text" class="form-control" name="invoice_type">
+            
+          </div> -->
+        </div>
+    
+    </div>
+    <!-- <div class="form-group">
+        <label class="control-label col-sm-4">Status</label>
+        <div class="col-sm-8" style="margin-top: 10px;">
+            <input type="text" class="form-control 
+            " name="status">
+
+        </div>
+    </div> -->
+
+</div>
+ <div class="col-sm-12" style="display: block; ">
+
+    <div class="row">
+        <div class="col-sm-3">
+            <label for="">Measurement Type</label>
+            <div class="radio-group">
+                <div>
+                    <input type="radio" name="measurement_type" value="tons" id="tons">
+                    <label for="tons">Metric Tons</label>
+                </div>
+                <div>
+                    <input type="radio" name="measurement_type" value="kgs" id="kgs">
+                    <label for="kgs">KGs</label>
+                </div>
+                <div>
+                    <input type="radio" name="measurement_type" value="meters" id="meters">
+                    <label for="meters">Meters</label>
+                </div>
+                <div>
+                    <input type="radio" name="measurement_type" value="meters" id="meters">
+                    <label for="meters">Ltr</label>
+                </div>
+                <div>
+                    <input type="radio" name="measurement_type" value="pieces" id="pieces">
+                    <label for="pieces">PCs</label>
+                </div>
+                <div>
+                    <input type="radio" name="measurement_type" value="spools" id="spools" class="measurement_type">
+                    <label for="spools">Spools</label>
+                </div>
+                <div>
+                    <input type="radio" name="measurement_type" value="sets" id="sets" class="measurement_type">
+                    <label for="sets">Sets</label>
+                </div>
+                <div>
+                    <input type="radio" name="measurement" value="other" id="other" class="measurement_type">
+                    <label for="other">Other</label>
+                </div>
+                <div id="input_other"  class="col-sm-7">
+                
+                    <input type="text"  class="form-control col-sm-5" name="measurement_other">
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <label for="">Payment Type</label>
+            <div class="radio-group">
+                <div>
+                    <input type="radio" name="payment_type" value="Cash in Advance" id="cia" class="payment_type">
+                    <label for="tons">Cash in Advance</label>
+                </div>
+                <div>
+                    <input type="radio" name="payment_type" value="credit" id="credit" class="payment_type">
+                    <label for="kgs">Credit</label>
+                </div>
+                <div>
+                    <input type="radio" name="payment_type" value="other2" id="other2" class="payment_type">
+                    <label for="meters">Other</label>
+                </div>
+                <div id="input_other2"  class="col-sm-7">
+                
+                    <input type="text"  class="form-control col-sm-5" name="payment_other">
+                </div>
+               
+            </div>
+        </div>
+        
+    </div>
+   <!--  <div class="row">
+        <div class="col-sm-3">
+            <div id="input_other"  class="col-sm-5">
+                
+                <input type="text"  class="form-control col-sm-5" name="measurement_other">
+            </div>
+            
+        </div>
+        
+    </div> -->
+</div> 
+
+</form>
+</div></div></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+           
+            {% if pr_form.errors %}
+            <div class="alert alert-danger">
+                <strong>Error(s) occurred:</strong>
+                <ul>
+                    {% for field, errors in pr_form.errors.items %}
+                    {% for error in errors %}
+                    <li>{{ field }}: {{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+
+            <form method="post" action="{% url 'create_items' %}" id="form2">
+                {% csrf_token %}
+
+                {{ formset.management_form }}
+
+                <div id="form-lists">
+                    {% for form in formset %}
+                    {% if form.field.name == "item_name" %}
+                        <div class="col-sm-10">
+                            <input list="the_orders" class="form-control" rows="3" name="item_name">
+                            <datalist id="the_orders">
+                                {% for order in the_orders %}
+                                <option value="{{ order.item_name }}">{{ order.item_name }}</option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
+            {% endif %}
+                    <div class="card-body row item-list form-group col-md-5">
+
+                        {{form.as_p}}
+
+                    </div>
+
+                    {% endfor %}
+                </div>
+
+                <div id="empty-form" class="hidden"> {{ formset.empty_form.as_p}}</div>
+                <button id="add-more" class="btn btn-primary" type="button">Add Item</button>
+
+                <div class="col-sm-8">
+                    <input type="hidden" name="vat_is_checked" id="vat_is_checked" value="False">
+                    <!-- <div class="form-group">
+                <label class="control-label col-sm-5" style="margin-top: 10px;">Total Before VAT</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="final_before_vat" readonly>
+        
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-5" style="margin-top: 10px;">Total Price</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="final_total_price" readonly>
+        
+                </div>
+            </div> -->
+
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-2">
+                <input type="checkbox" id="withholdingCheckbox"> Apply Excise Tax<br>
+
+            </div>
+            <div class="col-sm-2">
+                <input type="checkbox" id="discountCheckbox"> Apply Discount<br>
+
+            </div>
+            <div class="col-sm-2">
+                <input type="checkbox" id="vatCheckbox">Remove VAT<br>
+            
+            </div>
+        </div>
+    </div> 
+    <div class="row">
+        <div class="col-sm-12" >
+            <button id="submitss" class="col-sm-2 btn-lg" style="color: #6d7fcc; background-color: white; padding: 8px 16px;">
+                Calculate Total
+            </button>
+            <span class=" col-sm-3"><p id="total-price" name="total-price"  style="height:50px; font-weight:bolder; font-size: 22px; color: black;" ></p></span>
+            <span class=" col-sm-3"><p id="total-vat" name="total-vat"  style="height:50px; font-weight:bolder; font-size: 22px; color: black;" ></p></span>
+           
+        </div>
+    </div>
+    
+    <div class="row">
+    <div class="col-sm-12">
+        <span style="margin: 10px;" class="col-sm-3"></span>
+        <button id="submits" class="col-sm-2 btn-lg " style="color: #6d7fcc; background-color: white; margin-left: 100px;font-size: 24px; height: 62px; font-weight: bolder;">
+            Submit
+        </button>
+        <span style="margin: 10px;"></span>
+            <!-- <a href="" class="btn btn-default" style="font-size: large; margin-top: 5px;">Cancel</a> -->
+    </div>
+</div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        //const radioButtons = document.querySelectorAll('input[type="radio"]');
+        const radioButtons = document.querySelectorAll('.measurement_type');
+        const submitButton = document.querySelector('#submits');
+        const submitsButton = document.querySelector('#submitss');
+        const addMoreBtn = document.getElementById('add-more');
+        const priceFields = document.querySelectorAll('.price');
+        const totalPriceField = $('#total-price');
+        const totalVatField = $('#total-vat');
+        const radioButtons2 = document.querySelectorAll('.payment_type');
+        const totalNewForms = document.getElementById('id_items-TOTAL_FORMS')
+        let vat_checked = document.getElementById('vat_is_checked')
+        console.log(totalNewForms)
+        console.log("try")
+        const quantityFields = $('.quantity');
+        const withholding_checkbox = document.getElementById("withholdingCheckbox");
+        const discount_checkbox = document.getElementById("discountCheckbox");
+        const vat_checkbox = document.getElementById("vatCheckbox");
+        var excise = false
+        var discount = false
+
+        submitsButton.addEventListener('click', function (event) {
+            event.preventDefault(); 
+            calculateTotalPrice();
+            console.log("calc")
+        });
+        addMoreBtn.addEventListener('click', add_new_form);
+        
+        var univ_total = 0
+        var univ_vat = 0
+        function calculateTotalPrice() {
+        var total = 0
+        var total_vat = 0
+        var originalTotal = 0;
+        var originalVat = 0;
+
+        const formsets = $('.item-list');
+        const total_price_fields = document.querySelectorAll('.total_price');
+        const total_vat_fields = document.querySelectorAll('.before_vat');
+        const withholdingApplied = withholding_checkbox.checked;
+        const discountApplied = discount_checkbox.checked;
+        
+        $('.item-list').each(function() {
+            
+        
+            // Within each formset, select the 'total_price' fields
+            const totalFields = $(this).find('.total_price');
+            const vatFields = $(this).find('.before_vat');
+            totalFields.each(function() {
+            const price = parseFloat($(this).val()) || 0;
+         
+            total += price;
+            originalTotal += price; 
+            });
+            vatFields.each(function() {
+            const vat_price = parseFloat($(this).val()) || 0;
+            total_vat += vat_price;
+            originalVat += vat_price;
+          
+            });
+            
+            console.log(total)
+           
+            // Update the total for this formset
+            univ_total = total;
+            univ_vat = total_vat;
+            totalPriceField.val(total.toFixed(2));  // Update the 'value' of the field
+            totalPriceField.text('Total Price: $' + total.toFixed(2)); 
+            totalVatField.val(total_vat.toFixed(2));  // Update the 'value' of the field
+            totalVatField.text('Before VAT Price: $' + total_vat.toFixed(2));  // Update the displayed text
+        });
+        withholding_checkbox.addEventListener("change", function () {
+        console.log("The withholding checkbox was clicked.");
+
+        const withholdingApplied = withholding_checkbox.checked;
+        
+        if (withholdingApplied) {
+            const withholding_amount = total_vat * 0.05;
+            total = (total_vat + withholding_amount) + (0.15 * (total_vat + withholding_amount));
+            excise = true
+        } else {
+            total = originalTotal;
+            excise = false// Reset to the original total price
+        }
+        univ_total = total;
+        console.log(univ_total,total,"tots")
+
+        // Update the displayed and input fields
+        totalPriceField.val(total.toFixed(2));
+        totalPriceField.text('Total Price: $' + total.toFixed(2));
+    });
+
+    discount_checkbox.addEventListener("change", function () {
+        console.log("The discount checkbox was clicked.");
+
+        const discountApplied = discount_checkbox.checked;
+        console.log(total_vat)
+        if (discountApplied) {
+            const discount_amount = total_vat * 0.05;
+            total_vat = (total_vat - discount_amount) ;
+            total = (total_vat ) + (0.15 * (total_vat ))
+            discount = true
+        } else {
+            total_vat = originalVat;
+            total = originalTotal;
+            discount = false// Reset to the original total price
+        }
+        univ_vat = total_vat;
+        univ_total = total;
+        console.log(univ_vat,univ_total,"vats")
+        // Update the displayed and input fields
+        totalVatField.val(univ_vat.toFixed(2));
+        totalVatField.text('Before VAT Price: $' + univ_vat.toFixed(2));
+        totalPriceField.val(univ_total.toFixed(2));
+        totalPriceField.text('Total Price: $' + univ_total.toFixed(2));
+    });
+
+    vat_checkbox.addEventListener("change", function () {
+        console.log("The vat checkbox was clicked.");
+        vat_checked = !(vat_checked);
+        const vatApplied = vat_checkbox.checked;
+        console.log(total_vat,vat_checked)
+        if (vatApplied) {
+            const vat_removed_amount = total_vat * 0.05;
+            without_vat = univ_vat;
+            
+        } else {
+            without_vat = univ_total;
+        }
+        console.log(univ_vat,univ_total,"vats")
+        // Update the displayed and input fields
+        totalVatField.val(without_vat.toFixed(2));
+        totalVatField.text('Before VAT Price: $' + without_vat.toFixed(2));
+        totalPriceField.val(without_vat.toFixed(2));
+        totalPriceField.text('Total Price: $' + without_vat.toFixed(2));
+    });
+            }
+
+    // Call the calculation function when the page loads
+    calculateTotalPrice();
+        
+        
+    radioButtons.forEach(button => {
+        button.addEventListener('change', function() {
+            // Hide all input elements
+            hideAllInputs();
+            console.log("trys")
+            // Show the input element corresponding to the selected radio button
+            const inputId = 'input_' + this.value;
+            const inputElement = document.getElementById(inputId);
+            if (inputElement) {
+                inputElement.style.display = 'block';
+            }
+        });
+    });
+    /* radioButtons2.forEach(button => {
+        button.addEventListener('change', function() {
+            // Hide all input elements
+            hideAllInputs2();
+            console.log("trys")
+            // Show the input element corresponding to the selected radio button
+            const inputId = 'input_' + this.value;
+            const inputElement = document.getElementById(inputId);
+            if (inputElement) {
+                inputElement.style.display = 'block';
+            }
+        });
+    }); */
+        function hideAllInputs() {
+        const inputElements = document.querySelectorAll('[id^="input_"]');
+        inputElements.forEach(element => {
+            element.style.display = 'none';
+        });
+    }
+        function hideAllInputs2() {
+            const inputElements = document.querySelectorAll('[id^="input2_"]');
+            inputElements.forEach(element => {
+                element.style.display = 'none';
+            });
+        }
+        submitButton.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Serialize form data
+            const formData1 = new FormData(form1);
+            const formData2 = new FormData(form2);
+
+            const freightPrice = formData1.get('freight1');
+            const prNoValue = formData1.get('PR_no');
+
+            
+            formData1.set('PR_before_vat', univ_vat.toFixed(2));
+            if (vat_checkbox.checked) {
+                    // If checkbox is checked, set PR_total_price based on some condition
+                    formData1.set('PR_total_price', (univ_vat ).toFixed(2)); // Example logic
+                } else {
+                    // If checkbox is not checked, set PR_total_price based on default logic
+                    formData1.set('PR_total_price', univ_total.toFixed(2)); // Default logic
+                }
+            if (freightPrice) {
+                formData1.append('freight', freightPrice)
+            }
+            else{
+                const freightPrice = formData1.get('freight2');
+                if (freightPrice) {
+                    formData1.append('freight', freightPrice)
+            }
+            }
+            console.log(formData1,"ex")
+            const amount = 1
+            if (excise) {
+                formData1.append('excise_tax',amount)
+                
+                console.log(formData1,"data")
+                console.log("inside")
+            }
+            console.log(prNoValue)
+            formData2.append('PR_no', prNoValue)
+            formData2.append('vat_is_checked',vat_checked)
+            // Use fetch to submit both forms asynchronously
+            fetch(form1.action, {
+                method: 'POST',
+                body: formData1
+            })
+                .then(response => {
+                    // Handle the response if needed
+                    console.log('Form 1 submitted:', response);
+
+                    // Submit the second form asynchronously
+                    return fetch(form2.action, {
+                        method: 'POST',
+                        body: formData2
+                    });
+                })
+                .then(response => {
+                    // Handle the response for the second form if needed
+                    //console.log('Form 2 submitted:', response);
+                    document.getElementById('form1').reset();
+                    document.getElementById('form2').reset();
+
+                    // Reload the page
+                    window.location.reload();
+                   
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+        function updateTotalPrice(form) {
+            var quantity = parseFloat(form.find('.quantity').val());
+            var price = parseFloat(form.find('.price').val());
+            var total = quantity * price || 0;
+            var total_price = total  + (total * 0.15)
+            form.find('.before_vat').val(total.toFixed(2));
+            form.find('.total_price').val(total_price.toFixed(2));
+        }
+
+        $(document).on('input', '.item-list .quantity, .item-list .price', function () {
+            var form = $(this).closest('.item-list');
+            updateTotalPrice(form);
+        });
+
+        // Apply initial calculation for existing forms
+        $('.item-list').each(function () {
+            var form = $(this);
+            updateTotalPrice(form);
+        });
+        function add_new_form(args) {
+            // Your code to add a new form here
+            const currentForms = document.getElementsByClassName('item-list')
+            let currentFormsCount = currentForms.length + 1
+            console.log(currentForms.length)
+            console.log(totalNewForms);
+            const copyFormTarget = document.getElementById('form-lists')
+            const copyEmptyForm = document.getElementById('empty-form').cloneNode(true);
+            copyEmptyForm.setAttribute('class', 'item-list form-group col-md-5 text-dark')
+            copyEmptyForm.setAttribute('id', `form-${currentFormsCount}`)
+// Clear input values in the cloned form
+            const regex = new RegExp('__prefix__','g')
+            copyEmptyForm.querySelectorAll('input').forEach(function(input) {
+                input.value = '';
+            });
+            copyEmptyForm.innerHTML = copyEmptyForm.innerHTML.replace(regex,currentFormsCount)
+            // Append the cloned form to the form list
+            totalNewForms.value = currentFormsCount + 1;
+            copyFormTarget.appendChild(copyEmptyForm);
+                    }
+                });
+</script>
+
+{% endblock %}
