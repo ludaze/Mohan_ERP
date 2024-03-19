@@ -89,14 +89,18 @@
         <div id="content">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-
+                <div class="container-fluid d-flex" style="font-size:larger; font-weight: 500;color: grey;word-spacing: 13px;">
                     <button type="button" id="sidebarCollapse" class="btn toggle">
-                        <i class="fas fa-align-left"></i>
-                        <span style="color: white;">Sidebar</span>
+                        <i class="fa fa-bars"></i>
+                        <span style="color: white;"></span>
                     </button>
+                    <a href="{% url 'create_fgrn'%}">FGRN      |</a>
+                    <a href="{% url 'create_MR'%}">MR     |</a>
+                    <a href="{% url 'create_grn'%}">GRN</a>
+                    
 
                 </div>
+                
             </nav>
             {% block content %}
             {% endblock %}
