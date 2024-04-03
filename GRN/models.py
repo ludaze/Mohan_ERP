@@ -15,6 +15,7 @@ class purchase_orders(models.Model):
     status = models.TextField(blank=True, null=True, default="Pending")
     total_quantity = models.FloatField(blank=True, null=True)
     measurement_type = models.TextField(blank=True, null=True)
+    remaining = models.FloatField(blank=True, null=True)
 
 class PR_item(models.Model):
     PR_no = models.ForeignKey('purchase_orders', on_delete=models.CASCADE, db_column='PR_no',blank=True, null=True)
