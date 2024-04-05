@@ -75,45 +75,8 @@
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        const formset = document.querySelectorAll('.card-body');
-        formset.forEach(function(item, index) {
-            console.log('index')
-            // const quantityInput = item.querySelector('input[name$="quantity"]');
-            // const beforeVatInput = item.querySelector('input[name$="before_vat"]');
-            // const totalPriceOutput = item.querySelector('output[name$="total_price"]');
-            const priceInput = document.getElementById('price');
-            const finalPriceOutput = document.getElementById('final_price');
-        
-            // Add input event listeners to calculate the total price
-            // quantityInput.addEventListener('input', updateTotalPrice);
-            // beforeVatInput.addEventListener('input', updateTotalPrice);
-            
-            // function updateTotalPrice() {
-            //     const quantity = parseFloat(quantityInput.value) || 0;
-            //     const beforeVat = parseFloat(beforeVatInput.value) || 0;
-            //     const total = quantity * beforeVat;
-            //     totalPriceOutput.textContent = total.toFixed(2);
-            //     const price = parseFloat(priceInput.value) || 0;
-            // }
-            priceInput.addEventListener('input', updateFinalPrice);
-            function updateFinalPrice() {
-            let totalSum = 0.00;
-
-            formsets.forEach(function(formset) {
-                const price = parseFloat(formset.querySelector('input[name$="price"]').value) || 0;
-                
-                totalSum += price;
-            });
-
-            finalPriceOutput.textContent = totalSum.toFixed(2);
-        }
-        });
-    });
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script> 
+    <script src="../../static/js/grn/create_grn_item.js"></script>
 
     </script>
 {% endblock %}
