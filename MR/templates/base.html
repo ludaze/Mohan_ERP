@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}"> -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+tdXAdVB65f/9U6HcWfIw0WyjsQ8lThhRRNenPVE5DzjG8P" crossorigin="anonymous"> -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
@@ -34,19 +34,26 @@
         label {
            color: black;
         }
+        #sidebar ul li.active>a , a[aria-expanded="true"]{
+    color: white;
+    background: #1F2833;;
+}
+        body{
+            color: #1F2833;
+        }
     </style>
 </head>
 
 <body>
     <div class="wrapper " style="margin-top: 0%;">
         <!-- Sidebar  -->
-        <nav id="sidebar"  style="background-color: #1F2833;color: #66FCF1;">
-            <div class="sidebar-header" style="background-color: #1F2833;">
+        <nav id="sidebar"  style="background-color: #1F2833;color: white;">
+            <div class="sidebar-header" style=" border-bottom: #1F2833; background-color: #66FCF1;color: #1F2833;padding: 5px;text-align: center;border-color: #1F2833;">
                 <h3>  Mohan PLC</h3>
 
             </div>
 
-            <ul class="list-unstyled components" style="background-color: #1F2833;color: #66FCF1;">
+            <ul class="list-unstyled components" style="background-color: #1F2833;color: white;">
                 <br>
                 
                 <li class="active" style="font-size:larger; font-weight: 500;background-color: #1F2833;">
@@ -76,12 +83,12 @@
         </nav>
 
         <!-- Page Content  -->
-        <div id="content" style="margin-top:0px;margin-left:0px; padding-top:0px;padding-left:0px">
+        <div id="content" style="  margin-top:0px;margin-left:0px;margin-right: 0px;padding-right: 0px; padding-top:0px;padding-left:0px; border-color: #1F2833;">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #5D5C61;">
-                <div class="container-fluid d-flex" style="font-size:larger; font-weight: 500;color: #7395AE; word-spacing: 13px;">
-                    <button type="button" id="sidebarCollapse" class="btn toggle">
-                        <i class="fa fa-bars"></i>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #66FCF1; color: #1F2833; border-style: none none solid none; border-color: #1F2833;box-shadow: inset;">
+                <div class="container-fluid d-flex" style="font-size:23px; font-weight: 500;color: #1F2833;word-spacing: 13px;">
+                    <button type="button" id="sidebarCollapse" class="btn toggle" style="background-color: #1F2833;">
+                        <i class="fa fa-bars" style="color: aliceblue;"></i>
                         <span style="color: white;"></span>
                     </button>
                     <a href="{% url 'create_fgrn'%}">FGRN      |</a>

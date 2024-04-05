@@ -52,6 +52,9 @@ a:focus {
     border-bottom: 1px dashed #ddd;
     margin: 40px 0;
 }
+.inputs {
+    margin: 12px;
+}
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
@@ -86,7 +89,7 @@ a:focus {
 }
 
 #sidebar ul p {
-    color: #66FCF1;
+    color: white;
     padding: 10px;
 }
 
@@ -103,7 +106,7 @@ a:focus {
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #66FCF1;
+    color: white;
     background: #1F2833;;
 }
 
