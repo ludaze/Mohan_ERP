@@ -174,3 +174,12 @@ a.article:hover {
         display: none;
     }
 }
+
+.error{
+    /* position: absolute; */
+    top: 100%;
+    left: 2px;
+    font-size: 12px;
+    font-weight: 400;
+    color: red;
+  }

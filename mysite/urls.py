@@ -22,4 +22,5 @@ urlpatterns = [
     path('MR/', include('MR.urls')),
     path('GRN/', include('GRN.urls')),
     path('FGRN/', include('FGRN.urls')),
+    path('DN/', include('DN.urls')),
     ]
