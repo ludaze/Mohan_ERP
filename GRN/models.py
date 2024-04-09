@@ -2,7 +2,6 @@ from django.db import models
 import uuid
 # Create your models here.
 class purchase_orders(models.Model):
-    
     vendor_name = models.TextField(blank=True, null=True)
     PR_no = models.TextField(primary_key=True)
     date = models.DateField(blank=True, null=True)
@@ -44,4 +43,5 @@ class GRN_item(models.Model):
     grn_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     item_name = models.TextField(blank=True, null=True)
     quantity = models.IntegerField()
+
     

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from DN.models import *
+from deliveries.models import *
 
 
 class OrderSerializer(serializers.ModelSerializer):

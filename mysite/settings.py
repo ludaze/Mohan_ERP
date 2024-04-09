@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@7pcco*144@cyaq0&d76wo9^9rrsgqr!g@0j&lm5t+0^$#+izl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'MR',
     'GRN',
     'FGRN',
-    'DN',
+    'deliveries',
     'livereload',
     'rest_framework',
 ]
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'orders',
+        'NAME': 'mohan_orders',
        'USER': 'postgres',
        'PASSWORD': 'mohanPLC',
        'HOST': '127.0.0.1', 
@@ -135,3 +135,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'se.luhana.daniel@gmail.com'
+EMAIL_HOST_PASSWORD = 'ieqlewrifhfvhesd'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

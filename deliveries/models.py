@@ -9,7 +9,7 @@ from django.db import models
 
 class trial_delivery(models.Model):
     name = models.IntegerField(primary_key=True)
-    serial_no = models.ForeignKey('orders', models.DO_NOTHING, db_column='serial_no')
+    serial_no = models.ForeignKey('Orders', models.DO_NOTHING, db_column='serial_no')
     delivery_date = models.DateField(blank=True)
     delivery_quantity = models.IntegerField(blank=True)
     truck_number = models.TextField(blank=True, null=True)  # This field type is a guess.
@@ -23,7 +23,7 @@ class trial_delivery(models.Model):
 
 class delivery(models.Model):
     delivery_number = models.IntegerField(primary_key=True)
-    serial_no = models.ForeignKey('orders', models.DO_NOTHING, db_column='serial_no')
+    serial_no = models.ForeignKey('Orders', models.DO_NOTHING, db_column='serial_no')
     delivery_date = models.DateField(blank=True)
     delivery_quantity = models.IntegerField(blank=True)
     truck_number = models.TextField(blank=True, null=True)  # This field type is a guess.
@@ -38,6 +38,7 @@ class delivery(models.Model):
 
 class orders(models.Model):
     customer_name = models.TextField()
+    tin_no = models.TextField()
     serial_no = models.TextField(primary_key=True)
     date = models.DateField(blank=True, null=True)
     invoice = models.TextField(unique=True, blank=True, null=True)
@@ -51,6 +52,7 @@ class orders(models.Model):
     before_vat = models.FloatField(blank=True, null=True)
     comment = models.TextField(blank=True, null=True)
     withholding_amount = models.FloatField(blank=True, null=True)
+
     # class Meta:
     #     managed = False
     #     db_table = 'orders'
