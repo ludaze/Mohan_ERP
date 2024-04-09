@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'deliveries',
     'livereload',
     'rest_framework',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [
