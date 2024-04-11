@@ -93,8 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Append the cloned form to the form list
         totalNewForms.value = currentFormsCount + 1;
         copyFormTarget.appendChild(copyEmptyForm);
-    }
-    
+    } 
     });
     
     
