@@ -3,16 +3,9 @@
 {% block content %}
 <div class="form-group pull-left">
   <strong>
-    <h3>Approved PR Details</h3>
+    <h3>GRN Details</h3>
   </strong>
-  <form action="/GRN/print_pr">
-    <div class="form-group col-sm-4" style="display: flex; margin-top: 20px; ">
-      <input type="text" name="PR_no" placeholder="PR No" class="form-control" style=" margin-top: 10px; ">
-      <div style="width: 20%;"><button type="submit" class="btn btn-primary">Search PR</button></div>
-    </div>
-  </form>
- 
-  <br>
+  
   <br>
 
   <section class="intro">
@@ -34,7 +27,7 @@
       <th>PR Number</th>
       <th>Item name</th>
       <th>Recieved Quantity</th>
-      <!-- <th>Total ordered</th> -->
+      <th>Total ordered</th>
     </tr>
     {% for items in grn_items %}
     <tr>
@@ -43,7 +36,7 @@
       <td>{{ items.PR_no.PR_no }}</td>
       <td>{{ items.item_name }}</td>
       <td>{{ items.quantity }}</td>
-      <td>{{ items.PR_no.quantity }}</td>
+      <td>{{ items.PR_no.total_quantity }}</td>
     </tr>
     {% endfor %}
   </table>

@@ -54,14 +54,9 @@
                             <a href="{% url 'custom_report_page' %}">Local Approval</a>
                         </li>
                     </ul>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li style="font-size: large;">
-                            <a href="{% url 'import_approval' %}">Import Approvals</a>
-                        </li>
-                    </ul>
+                    
                    
                 </li>
-               
                 <li style="font-size:larger; font-weight: 500;">
                     <a href="#PRSubmenu" data-toggle="collapse" aria-expanded="false"
                         class="dropdown-toggle">Local PR</a>
@@ -110,7 +105,8 @@
                     </button>
                     <a href="{% url 'create_fgrn'%}">FGRN      |</a>
                     <a href="{% url 'create_MR'%}">MR     |</a>
-                    <a href="{% url 'create_grn'%}">GRN</a>
+                    <a href="{% url 'create_grn'%}">GRN     |</a>
+                    <a href="{% url 'input_delivery'%}">DN</a>
                     
 
                 </div>

@@ -20,8 +20,7 @@ urlpatterns = [
     path('create_trial_grn', views.create_trial_grn, name='create_trial_grn'),
     path('grn_number', views.grn_number, name='grn_number'),
     path('admin/custom-report-page/', views.custom_report_page, name='custom_report_page'),
-    path('admin/import_approval/', views.import_approval, name='import_approval'),
-    
+    path('search_grns', views.search_grns, name='search_grns'),
 ]
 
 

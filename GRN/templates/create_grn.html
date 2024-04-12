@@ -25,6 +25,9 @@
     <span class="col-md-3" ></span>
 <h1>Create GRN</h1>
 </div>
+<div id="error-container">
+    <!-- Errors will be displayed here -->
+</div>
 <form action="{% url 'grn_number' %}">
     <div>
         <label for=""> PR Number</label>
@@ -102,12 +105,24 @@
         <div class="form-group" style="margin-bottom: 10px;">
             <label class="control-label col-sm-4" style="margin-top: 10px;">Store Name</label>
             <div class="col-sm-8" style="margin-top: 10px;">
-                <input type="text" class="form-control" name="store_name">
-
+                <input type="text" list="store_name" placeholder="store" name="store_name" class="form-control "  style="width: 100%;">
+                <datalist id="store_name"> 
+                    {% for order in grns %}
+                    <option value="{{order.store_name}}"></option>
+                    {% endfor %}
+                  </datalist>
             </div>
             <label class="control-label col-sm-4" style="margin-top: 10px;">Store Keeper</label>
             <div class="col-sm-8" style="margin-top: 10px;">
-                <input type="text" class="form-control" name="store_keeper">
+                <input type="text" list="store_keeper" placeholder="keeper" name="store_keeper" class="form-control "
+
+                style="width: 100%;">
+  
+              <datalist id="store_keeper">
+                {% for order in grns %}
+                <option value="{{order.store_keeper}}"></option>
+                {% endfor %}
+              </datalist>
 
             </div>
             <!-- <label class="control-label col-sm-4" style="margin-top: 10px;">Invoice Type</label>
