@@ -341,7 +341,7 @@ def display_search_items(request):
 
 def display_grn(request):
     if request.method == 'GET':
-        orders = GRN.objects.all()
+        orders = GRN.objects.all().order_by('GRN_no')
         
         return render(request, 'display_grn.html', {'my_order':orders})
 
@@ -500,3 +500,79 @@ def print_pr(request):
                         'my_order': orders,
                     }
     return render(request, 'print_pr.html', context)
+
+@login_required 
+@user_passes_test(is_admin)
+def custom_report_page(request):
+    # Your custom logic here (e.g., fetching data)
+    if not is_admin(request.user):
+        # User is not authenticated to access this view
+        messages.error(request, "You are not authorized to access this page.")
+        print("wrong")
+        return redirect('login')
+
+    pending_orders = purchase_orders.objects.filter(status='Pending')
+    # Handle form submission
+    
+    if request.method == 'POST':
+        form = approvalForm(request.POST)
+        print(form.data)
+        if form.is_valid():
+            print(form.cleaned_data['approval'])
+            action = form.cleaned_data['action']
+            approval_name = form.cleaned_data['approval']
+            
+            if action == 'approve':
+                for pr_no in form.cleaned_data['selected_orders']:
+                    print(pr_no.PR_no)
+                    purchase_order = purchase_orders.objects.get(PR_no=pr_no.PR_no)
+                    purchase_order.status = 'approved'
+                    purchase_order.approved_by = approval_name
+                    # if approval_name == "":
+                    #     print(approval_name,"nottt")
+                    #     messages.error(request, "Please enter Authorizer's name")
+                    #     print("wrong")
+                    #     return redirect('custom_report_page')
+                    purchase_order.save()
+            elif action == 'reject':
+                for pr_no in form.cleaned_data['selected_orders']:
+                    purchase_order = purchase_orders.objects.get(PR_no=pr_no.PR_no)
+                    purchase_order.status = 'rejected'
+                    purchase_order.approved_by = approval_name
+                    purchase_order.save()
+            return redirect('custom_report_page')
+
+    else:
+        form = approvalForm()
+
+    context = {
+        'pending_orders': pending_orders,
+        'form': form,
+    }
+
+   
+    return render(request, 'admin/custom_report_page.html', context)
+
+def search_grns(request):
+    if request.method == 'GET':
+        PR_no = request.GET['PR_no']
+        my_order = get_object_or_404(purchase_orders, PR_no=PR_no)
+        delivery_qs = GRN.objects.all()
+        deliveries = delivery_qs.filter(PR_no=PR_no)
+        if deliveries.exists():
+            context = {
+                        'deliveries': deliveries,
+                        'my_order': my_order,
+                    }
+            return render(request, 'single_GRN.html', context)
+            
+        else:
+            print("none")
+            return render(request, 'single_GRN.html', context)
+    
+    
+    else:
+        context = {
+                        'deliveries': deliveries,
+                    }
+        return render(request, 'single_delivery.html', context)

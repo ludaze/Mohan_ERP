@@ -1,6 +1,6 @@
 from django import forms
 #from .models import GRN, GRNItem
-from .models import purchase_orders,PR_item,GRN, GRN_item
+from .models import *
 
 class PRForm(forms.ModelForm):
     PR_total_price = forms.DecimalField(
@@ -83,4 +83,19 @@ class GRNItemForm(forms.ModelForm):
         
         model = GRN_item
         fields = ['item_name','quantity']
+
+class approvalForm(forms.Form):
+    selected_orders = forms.ModelMultipleChoiceField(
+        queryset= purchase_orders.objects.filter(status='Pending'),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+    action = forms.ChoiceField(
+        choices=[('approve', 'Approve'), ('reject', 'Reject')],
+        widget=forms.RadioSelect,
+    )
+    approval = forms.CharField(
+        widget=forms.TextInput,
+        required=False  # You can omit this line as TextInput is the default widget for CharField
+    )
 
