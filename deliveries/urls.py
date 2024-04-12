@@ -20,7 +20,6 @@ from django.urls import path
 from deliveries import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('input_delivery/', views.input_delivery, name='input_delivery'), 
     path('display_orders/', views.display_orders, name='display_orders'),
     path('input_orders/', views.input_orders, name='input_orders'),

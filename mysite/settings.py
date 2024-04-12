@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'FGRN',
     'deliveries',
     'rest_framework',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'members',
 ]
 
 MIDDLEWARE = [

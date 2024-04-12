@@ -4,6 +4,7 @@ from django.db import models
 class FGRN(models.Model):
     FGRN_no = models.TextField(primary_key= True)
     recieved_from = models.TextField(blank=True, null= True)
+    recieved_by = models.TextField(blank=True, null= True)
     date = models.DateField()
 
 class FGRN_item(models.Model):
