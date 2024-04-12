@@ -60,7 +60,7 @@ def create_fgrn_items(request):
                     try:
                         finished_item = finished_goods.objects.get(item_name = item_name)
                         finished_item.quantity += quantity
-                        finished_item_item.save()
+                        finished_item.save()
                     except finished_goods.DoesNotExist:
                         print(item_name, quantity, "yes")
                         finished_item = finished_goods(item_name = item_name, quantity = quantity)
@@ -105,6 +105,7 @@ def display_FGRN(request):
                 'date': mr.date,  # Assuming 'date' is a field in CosmicOrder
                 'FGRN_items': items,  # Assuming a related name 'order_items' on CosmicOrder pointing to OrderItem
                 'recieved_from': mr.recieved_from,  # Assuming 'PR_before_vat' is a field in CosmicOrder
+               
                   # A  # Assuming 'status' is a field in CosmicOrder
             }
         mrs_data.append(mr_data)

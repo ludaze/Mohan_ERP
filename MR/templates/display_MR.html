@@ -30,6 +30,7 @@
                       <th>Date</th>
                       <th>Items </th>
                       <th>Quantity</th>
+                      <th>Unit</th>
                     </tr>
                     
                     {% for order in my_order %}
@@ -46,6 +47,10 @@
                       {{ item.quantity }}
                       {% if not forloop.last %}<br>{% endif %}
                   {% endfor %}</td>
+                  <td>{% for item in order.mr_items.all %}
+                    {{ item.unit }}
+                    {% if not forloop.last %}<br>{% endif %}
+                {% endfor %}</td>
                     
                     </tr>
                     {% endfor %}

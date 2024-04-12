@@ -17,10 +17,13 @@ class MRItemForm(forms.ModelForm):
     quantity = forms.IntegerField(
         widget = forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'quantity'})
     )
+    unit = forms.CharField(
+        widget = forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Measurement Type'})
+    )
     class Meta:
    
         model = MR_item
-        fields = ['item_name','quantity']
+        fields = ['item_name','quantity', 'unit']
    
 class InventoryItemForm(forms.ModelForm):
     
@@ -33,5 +36,5 @@ class InventoryItemForm(forms.ModelForm):
     class Meta:
    
         model = inventory
-        fields = ['item_name','quantity']
+        fields = ['item_name','quantity',]
    

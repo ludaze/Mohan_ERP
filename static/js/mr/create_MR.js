@@ -2,15 +2,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const totalNewForms = document.getElementById('id_items-TOTAL_FORMS')
     const submitButton = document.querySelector('#submits');
     const addMoreBtn = document.getElementById('add-more');
-    const MR_no = document.getElementById('MR_no')
-   
+
+
     addMoreBtn.addEventListener('click', add_new_form);
+
 
     submitButton.addEventListener('click', function (event) {
         event.preventDefault(); // Prevent the default form submission
 
-        validateInputs();
-       
         // Serialize form data
         const formData1 = new FormData(form1);
         const formData2 = new FormData(form2);
@@ -20,8 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const amount = 1
 
-       
-
         console.log(prNoValue)
         formData2.append('MR_no', prNoValue)
 
@@ -29,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch(form1.action, {
             method: 'POST',
             body: formData1
-            
         })
             .then(response => {
                 if (!response.ok) {
@@ -81,8 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     });
 
-    
-
 
     function add_new_form(args) {
         // Your code to add a new form here
@@ -105,35 +99,4 @@ document.addEventListener('DOMContentLoaded', function () {
         copyFormTarget.appendChild(copyEmptyForm);
     }
 
-    const setError = (element, message) => {
-        const inputControl = element.parentElement;
-        const errorDisplay = inputControl.querySelector('.error');
-    
-        errorDisplay.innerText = message;
-        inputControl.classList.add('error');
-        inputControl.classList.remove('success')
-    }
-    
-    const setSuccess = element => {
-        const inputControl = element.parentElement;
-        const errorDisplay = inputControl.querySelector('.error');
-    
-        errorDisplay.innerText = '';
-        inputControl.classList.add('success');
-        inputControl.classList.remove('error');
-    };
-    
-    const validateInputs = () => {
-        const MR_noValue = MR_no.value.trim()
-    
-        if (MR_noValue === null || MR_noValue === ''){
-            setError(MR_no, 'MR_noValue is required');
-        } else {
-            setSuccess(MR_no);
-        }
-    }
-
 });
-
-
-

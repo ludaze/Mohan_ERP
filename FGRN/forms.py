@@ -9,7 +9,7 @@ class FGRNForm(forms.ModelForm):
     class Meta:
    
         model = FGRN
-        fields = ['FGRN_no','date','recieved_from']
+        fields = ['FGRN_no','date','recieved_from', 'recieved_by']
    
 class FGRNItemForm(forms.ModelForm):
     
