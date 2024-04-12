@@ -1,8 +1,11 @@
 <!-- base.html -->
+
 {% load static %}
+
+
 <!DOCTYPE html>
 <html>
-
+   
 <head>
     <script src="https://unpkg.com/htmx.org@1.9.6"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -87,7 +90,8 @@
                     </button>
                     <a href="{% url 'create_fgrn'%}">FGRN      |</a>
                     <a href="{% url 'create_MR'%}">MR     |</a>
-                    <a href="{% url 'create_grn'%}">GRN</a>
+                    <a href="{% url 'create_grn'%}">GRN     |</a>
+                    <a href="{% url 'input_delivery'%}">DN</a>
                     
 
                 </div>

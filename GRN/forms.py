@@ -99,17 +99,3 @@ class approvalForm(forms.Form):
         required=False  # You can omit this line as TextInput is the default widget for CharField
     )
 
-class importApprovalForm(forms.Form):
-    selected_orders = forms.ModelMultipleChoiceField(
-        queryset= import_PR.objects.filter(status='Pending'),
-        widget=forms.CheckboxSelectMultiple,
-        required=False
-    )
-    action = forms.ChoiceField(
-        choices=[('approve', 'Approve'), ('reject', 'Reject')],
-        widget=forms.RadioSelect,
-    )
-    approval = forms.CharField(
-        widget=forms.TextInput,
-        required=True  # You can omit this line as TextInput is the default widget for CharField
-    )

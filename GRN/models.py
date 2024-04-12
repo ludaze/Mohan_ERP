@@ -2,7 +2,6 @@ from django.db import models
 import uuid
 # Create your models here.
 class purchase_orders(models.Model):
-    
     vendor_name = models.TextField(blank=True, null=True)
     PR_no = models.TextField(primary_key=True)
     date = models.DateField(blank=True, null=True)
@@ -45,35 +44,6 @@ class GRN_item(models.Model):
     grn_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     item_name = models.TextField(blank=True, null=True)
     quantity = models.IntegerField()
-    
-class import_PR(models.Model):
-    measurement = models.TextField(blank=True, null=True)
-    transportation = models.TextField(blank=True, null=True)
-    shipment_type = models.TextField(blank=True, null=True)
-    payment_type = models.TextField(blank=True, null=True)
-    vendor_name = models.TextField(blank=True, null=True)
-    PR_no = models.TextField(primary_key=True)
-    order_no = models.TextField(blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
-    site_name = models.TextField( )
-    approved_by = models.TextField(blank=True, null=True)
-    PR_total_price = models.FloatField(blank=True, null=True)
-    remaining =  models.FloatField(blank=True, null=True) # This field type is a guess.
-    status = models.TextField(blank=True, null=True, default="Pending")
-    country = models.TextField(blank=True, null=True)
-    loading_port = models.TextField(blank=True, null=True)
-    discharge_port = models.TextField(blank=True, null=True)
-    destination = models.TextField(blank=True, null=True)
-    freight = models.FloatField(blank=True, null=True)
-    djbouti_costs = models.FloatField(blank=True, null=True)
-    total_quantity = models.FloatField(blank=True, null=True)
 
-class import_PR_item(models.Model):
-    PR_no = models.ForeignKey('import_PR', on_delete=models.CASCADE, db_column='PR_no',blank=True, null=True)
-    id_numeric = models.AutoField(primary_key=True)
-    item_name = models.TextField(blank=True, null=True)
-    price = models.FloatField(blank=True, null=True)
-    total_price = models.FloatField(blank=True, null=True)
-    quantity = models.FloatField()
-    measurement_type = models.TextField(blank=True, null=True)
-    hs_code = models.TextField(blank=True, null=True)
+
+    

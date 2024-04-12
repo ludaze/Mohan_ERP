@@ -22,4 +22,7 @@ urlpatterns = [
     path('MR/', include('MR.urls')),
     path('GRN/', include('GRN.urls')),
     path('FGRN/', include('FGRN.urls')),
+    path('deliveries/', include('deliveries.urls')),
+    path('members/', include('members.urls')),
+    path('members/', include('django.contrib.auth.urls')),
     ]
