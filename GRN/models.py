@@ -14,6 +14,7 @@ class purchase_orders(models.Model):
     status = models.TextField(blank=True, null=True, default="Pending")
     total_quantity = models.FloatField(blank=True, null=True)
     measurement_type = models.TextField(blank=True, null=True)
+    remaining = models.FloatField(blank=True, null=True)
 
 class PR_item(models.Model):
     PR_no = models.ForeignKey('purchase_orders', on_delete=models.CASCADE, db_column='PR_no',blank=True, null=True)
@@ -43,5 +44,6 @@ class GRN_item(models.Model):
     grn_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     item_name = models.TextField(blank=True, null=True)
     quantity = models.IntegerField()
+
 
     

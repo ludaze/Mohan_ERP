@@ -1,6 +1,6 @@
 from django import forms
 #from .models import GRN, GRNItem
-from .models import purchase_orders,PR_item,GRN, GRN_item
+from .models import *
 
 class PRForm(forms.ModelForm):
     PR_total_price = forms.DecimalField(
