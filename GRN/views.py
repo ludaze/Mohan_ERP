@@ -123,7 +123,6 @@ def create_grn(request):
     if request.method == 'POST':
         grn_form = GRNForm(request.POST )
        
-        
         print(grn_form.data,"y")
         if grn_form.errors:
             print(grn_form.errors)  
