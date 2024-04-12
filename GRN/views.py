@@ -342,7 +342,7 @@ def display_search_items(request):
 
 def display_grn(request):
     if request.method == 'GET':
-        orders = GRN.objects.all()
+        orders = GRN.objects.all().order_by('GRN_no')
         
         return render(request, 'display_grn.html', {'my_order':orders})
 
@@ -554,3 +554,26 @@ def custom_report_page(request):
    
     return render(request, 'admin/custom_report_page.html', context)
 
+def search_grns(request):
+    if request.method == 'GET':
+        PR_no = request.GET['PR_no']
+        my_order = get_object_or_404(purchase_orders, PR_no=PR_no)
+        delivery_qs = GRN.objects.all()
+        deliveries = delivery_qs.filter(PR_no=PR_no)
+        if deliveries.exists():
+            context = {
+                        'deliveries': deliveries,
+                        'my_order': my_order,
+                    }
+            return render(request, 'single_GRN.html', context)
+            
+        else:
+            print("none")
+            return render(request, 'single_GRN.html', context)
+    
+    
+    else:
+        context = {
+                        'deliveries': deliveries,
+                    }
+        return render(request, 'single_delivery.html', context)
