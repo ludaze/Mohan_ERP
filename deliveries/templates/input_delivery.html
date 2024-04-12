@@ -4,7 +4,7 @@
     <h1>Input Delivery Information</h1>
     <div>
       <div  class="col-md-6">
-        <form action="/search_orders/">
+        <form action="{% url 'search_orders' %}">
           <input type="text" name="serial_no">
           <input style="color: #6d7fcc;"  type="submit" value="Search Order">
       </form>

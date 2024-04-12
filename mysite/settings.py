@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'GRN',
     'FGRN',
     'deliveries',
-    'livereload',
     'rest_framework',
     'django.contrib.humanize'
 ]
@@ -55,7 +54,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'livereload.middleware.LiveReloadScript',
     
 ]
 
@@ -86,7 +84,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mohan_orders',
+        'NAME': 'orders',
        'USER': 'postgres',
        'PASSWORD': 'mohanPLC',
        'HOST': '127.0.0.1', 

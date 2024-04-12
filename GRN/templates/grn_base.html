@@ -47,7 +47,16 @@
             <ul class="list-unstyled components">
                 <br>
                 
-               
+                <li class="active" style="font-size:larger; font-weight: 500;">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li style="font-size: large;">
+                            <a href="{% url 'custom_report_page' %}">Local Approval</a>
+                        </li>
+                    </ul>
+                    
+                   
+                </li>
                 <li style="font-size:larger; font-weight: 500;">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
                         class="dropdown-toggle">Create PRs</a>
