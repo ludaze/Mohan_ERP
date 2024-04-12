@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     'GRN',
     'FGRN',
     'deliveries',
-    'livereload',
     'rest_framework',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'members',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +55,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'livereload.middleware.LiveReloadScript',
     
 ]
 

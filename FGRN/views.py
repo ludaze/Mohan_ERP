@@ -10,7 +10,11 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.http import JsonResponse
 from MR.models import *
+from .decorators import allowed_users
+
 # Create your views here.
+# @login_required(login_url='login_user')
+# @allowed_users(allowed_roles=['admin'])
 def create_fgrn(request):
     if request.method == 'POST':
         form = FGRNForm(request.POST)

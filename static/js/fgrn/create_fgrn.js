@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const totalNewForms = document.getElementById('id_items-TOTAL_FORMS')
     const addMoreBtn = document.getElementById('add-more'); 
     const recieved_from = document.getElementById('recieved_from')
+    const recieved_by = document.getElementById('recieved_by')
     const date = document.getElementById('date')
     addMoreBtn.addEventListener('click', add_new_form);
     
